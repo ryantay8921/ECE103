@@ -1,0 +1,29 @@
+
+
+
+
+clear all;
+close all;
+clc;
+format compact;
+
+M = 100; %kg
+b = 20; %kg/s
+k = 1; %kg/s^2
+
+syms t h1(t) h2(t);
+
+r(t) = dirac(t);
+h1_1(t) = diff(h1,t);
+ode1 = M*diff(h1_1,t) + b*diff(h1,t) + k*h1(t) == r(t);
+con1 = h1(0) == 0;
+con2 = h1_1(0) == 0;
+
+h1(t) = dsolve(ode1, con1, con2);
+
+subplot(2,1,1);
+fplot(h1(t),[-10 300],'b');
+grid on
+xlabel("t");
+ylabel(h_1(t));
+title(Impulse Response (b = 20));

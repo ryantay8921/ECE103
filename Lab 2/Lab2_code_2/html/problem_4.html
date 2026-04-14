@@ -1,0 +1,119 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>problem_4</title><meta name="generator" content="MATLAB 9.14"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-04-18"><meta name="DC.source" content="problem_4.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput">clear <span class="string">all</span>;
+close <span class="string">all</span>;
+clc;
+
+f = @(t)(3*pi*(sin(8*pi.*t + 1.3)).*cos(4*pi.*t - 0.8).*exp(sin(12*pi.*t))); <span class="comment">% Define the signal as an anonymous function</span>
+t_window = [0.25, 0.75]; <span class="comment">% Define the time window of interest</span>
+Energy = integral(@(t) f(t).^2, 0.25, 0.75); <span class="comment">% Compute the energy of the signal over the time window</span>
+fprintf(<span class="string">"The Energy of the signal is: %s \n"</span>, Energy) <span class="comment">% Print the energy of the signal</span>
+
+<span class="comment">%syms T;</span>
+<span class="comment">%Power = limit(Energy/T,T,inf);</span>
+
+Power = Energy/(t_window(2)-t_window(1)); <span class="comment">% Compute the power of the signal over the time window</span>
+fprintf(<span class="string">"The power is: %s\n"</span>, Power) <span class="comment">% Print the power of the signal</span>
+
+<span class="comment">%{
+</span><span class="comment">The code above defines a signal as an anonymous function and a time window of interest.
+</span><span class="comment">It then computes the energy of the signal over the time window and prints the result.
+</span><span class="comment">Next, it computes the power of the signal over the time window and prints the result.
+</span><span class="comment">
+</span><span class="comment">The output of this code is two printed values: the energy of the signal and the power of the signal over the time window.
+</span><span class="comment">%}</span>
+</pre><pre class="codeoutput">The Energy of the signal is: 2.737748e+01 
+The power is: 5.475496e+01
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2023a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+clear all;
+close all;
+clc;
+
+f = @(t)(3*pi*(sin(8*pi.*t + 1.3)).*cos(4*pi.*t - 0.8).*exp(sin(12*pi.*t))); % Define the signal as an anonymous function
+t_window = [0.25, 0.75]; % Define the time window of interest
+Energy = integral(@(t) f(t).^2, 0.25, 0.75); % Compute the energy of the signal over the time window
+fprintf("The Energy of the signal is: %s \n", Energy) % Print the energy of the signal
+
+%syms T;
+%Power = limit(Energy/T,T,inf);
+
+Power = Energy/(t_window(2)-t_window(1)); % Compute the power of the signal over the time window
+fprintf("The power is: %s\n", Power) % Print the power of the signal
+
+%{
+The code above defines a signal as an anonymous function and a time window of interest.
+It then computes the energy of the signal over the time window and prints the result.
+Next, it computes the power of the signal over the time window and prints the result.
+
+The output of this code is two printed values: the energy of the signal and the power of the signal over the time window.
+%}
+##### SOURCE END #####
+--></body></html>

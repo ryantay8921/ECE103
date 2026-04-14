@@ -1,0 +1,48 @@
+# PDFs
+*.pdf
+
+# Archives / compressed files
+*.zip
+*.tar
+*.gz
+*.rar
+*.7z
+
+# Disk images / installers
+*.iso
+*.dmg
+
+# Media (often large)
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.mp3
+*.wav
+*.flac
+
+# Large data / binary files
+*.bin
+*.dat
+*.h5
+*.hdf5
+
+# CAD / design files (often large)
+*.step
+*.stp
+*.iges
+*.igs
+*.stl
+
+# Logs
+*.log
+
+# PowerPoint files
+*.ppt
+*.pptx
+*.pps
+*.ppsx
+*.pptm
+
+# Optional: ignore anything over a certain size (requires Git LFS or hooks)
+# Git itself can't ignore by file size natively
